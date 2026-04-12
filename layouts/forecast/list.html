@@ -1,0 +1,72 @@
+{{ define "navdate" }}Week of {{ .Date.Format "2 January 2006" | upper }}{{ end }}
+
+{{ define "main" }}
+
+{{ $latest := first 1 (where .Site.RegularPages "Section" "forecast") }}
+{{ range $latest }}
+
+<p class="forecast-date">Weekly forecast — {{ .Date.Format "2 January 2006" }}</p>
+<p class="forecast-sub">Published every Monday · Based on knowledge bank, daily brief history, and independent source analysis</p>
+
+{{ if .Params.landscape }}
+<div class="section-block">
+  <p class="section-label">Current landscape</p>
+  <p class="section-body">{{ .Params.landscape }}</p>
+</div>
+{{ end }}
+
+{{ if .Params.scenarios }}
+<div class="section-block">
+  <p class="section-label">Scenario watch list</p>
+  {{ range .Params.scenarios }}
+  <div class="scenario-item">
+    <div class="scenario-header">
+      <p class="scenario-title">{{ .title }}</p>
+      <span class="scenario-status status-{{ .status | lower }}">{{ .status | title }}</span>
+    </div>
+    <p class="scenario-body">{{ .body }}</p>
+    <div class="scenario-meta">
+      <span><strong>Confidence</strong> {{ .confidence }}/10</span>
+      <span><strong>NZ impact</strong> {{ .nz_impact }}</span>
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ if .Params.items }}
+<div class="section-block">
+  <p class="section-label">Forecast items — 30 to 90 days</p>
+  {{ range .Params.items }}
+  <div class="forecast-item">
+    <p class="forecast-item-region">{{ .region }}</p>
+    <h2 class="forecast-item-heading">{{ .heading }}</h2>
+    <p class="forecast-item-body">{{ .body }}</p>
+    <div class="forecast-scores">
+      <span><strong>Probability</strong> {{ .probability }}/10</span>
+      <span><strong>Timeframe</strong> {{ .timeframe }}</span>
+      <span><strong>NZ impact</strong> <span class="nz-tag nz-tag-{{ .impact_level }}">{{ .impact_label }}</span></span>
+    </div>
+    {{ if .prepare }}
+    <div class="prepare-block"><strong>Prepare/Act:</strong> {{ .prepare }} <strong>Urgency {{ .urgency }}/10</strong></div>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ end }}
+
+{{ $forecasts := where .Site.RegularPages "Section" "forecast" }}
+{{ if gt (len $forecasts) 1 }}
+<div class="archive-section">
+  <p class="archive-label">Previous forecasts</p>
+  <div class="archive-list">
+    {{ range after 1 $forecasts }}
+    <a href="{{ .RelPermalink }}">{{ .Date.Format "2 Jan" }}</a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+{{ end }}

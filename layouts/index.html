@@ -1,0 +1,67 @@
+{{ define "navdate" }}{{ now.Format "2 January 2006" | upper }}{{ end }}
+
+{{ define "main" }}
+
+{{ $latest := first 1 (where .Site.RegularPages "Section" "briefs") }}
+{{ range $latest }}
+
+{{ if .Params.dashboard }}
+<div class="dashboard-wrap">
+  <p class="dashboard-heading">NZ exposure — today's assessment</p>
+  <div class="gauges-row">
+    {{ range .Params.dashboard }}
+    {{ partial "gauge.html" . }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+{{ if .Params.indicators }}
+<div class="indicators">
+  {{ range .Params.indicators }}
+  <span class="indicator">
+    {{ .label }}: <strong>{{ .value }}</strong>
+    {{ if eq .trend "up" }}<span class="ind-up">▲</span>{{ end }}
+    {{ if eq .trend "down" }}<span class="ind-up" style="color:#3B6D11">▼</span>{{ end }}
+    {{ if eq .trend "flat" }}<span class="ind-flat">—</span>{{ end }}
+  </span>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ if .Params.alert }}
+<div class="alert-bar">⚠ {{ .Params.alert }}</div>
+{{ end }}
+
+<p class="brief-date">{{ .Date.Format "2 January 2006" }}</p>
+
+{{ range .Params.sections }}
+<div class="brief-section">
+  <p class="brief-region">{{ .region }}</p>
+  <h2 class="brief-heading">{{ .heading }}</h2>
+  <p class="brief-body">{{ .body }}</p>
+  {{ if .nz_impact }}
+  <div class="nz-impact">
+    {{ range .nz_impact }}
+    <span class="nz-tag nz-tag-{{ .level }}">{{ .label }}: {{ .level | title }}</span>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ end }}
+
+{{ $briefs := where .Site.RegularPages "Section" "briefs" }}
+{{ if gt (len $briefs) 1 }}
+<div class="archive-section">
+  <p class="archive-label">Previous briefs</p>
+  <div class="archive-list">
+    {{ range after 1 $briefs }}
+    <a href="{{ .RelPermalink }}">{{ .Date.Format "2 Jan" }}</a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+{{ end }}

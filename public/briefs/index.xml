@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Briefs on Daymark</title>
+    <link>http://localhost:1313/briefs/</link>
+    <description>Recent content in Briefs on Daymark</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-nz</language>
+    <lastBuildDate>Sun, 12 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/briefs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Daily Brief</title>
+      <link>http://localhost:1313/briefs/2026-04-12/</link>
+      <pubDate>Sun, 12 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/briefs/2026-04-12/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

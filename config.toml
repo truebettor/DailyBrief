@@ -1,0 +1,25 @@
+baseURL = "https://daymark.nz/"
+languageCode = "en-nz"
+title = "Daymark"
+
+[params]
+  tagline = "Global events, analysed for New Zealand — independent perspective, delivered daily."
+  disclaimer = "Independent analytical perspective only. Not financial, legal, or personal advice. Readers should form their own views."
+
+[menu]
+  [[menu.main]]
+    name = "Brief"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Forecast"
+    url = "/forecast/"
+    weight = 2
+  [[menu.main]]
+    name = "Suggest a topic"
+    url = "/suggest/"
+    weight = 3
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 4
