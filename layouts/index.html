@@ -2,7 +2,9 @@
 
 {{ define "main" }}
 
-{{ $latest := first 1 (where .Site.RegularPages.ByDate.Reverse "Section" "briefs") }}
+{{ $briefs := where .Site.RegularPages "Section" "briefs" }}
+{{ $sorted := sort $briefs "Date" "desc" }}
+{{ $latest := first 1 $sorted }}
 {{ range $latest }}
 
 {{ if .Params.dashboard }}
@@ -52,7 +54,7 @@
 
 {{ end }}
 
-{{ $briefs := where .Site.RegularPages.ByDate.Reverse "Section" "briefs" }}
+{{ $briefs := sort (where .Site.RegularPages "Section" "briefs") "Date" "desc" }}
 {{ if gt (len $briefs) 1 }}
 <div class="archive-section">
   <p class="archive-label">Previous briefs</p>
