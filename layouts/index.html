@@ -3,9 +3,8 @@
 {{ define "main" }}
 
 {{ $briefs := where .Site.RegularPages "Section" "briefs" }}
-{{ $sorted := sort $briefs "Date" "desc" }}
-{{ $latest := first 1 $sorted }}
-{{ range $latest }}
+{{ $latest := index $briefs 0 }}
+{{ with $latest }}
 
 {{ if .Params.dashboard }}
 <div class="dashboard-wrap">
@@ -54,7 +53,6 @@
 
 {{ end }}
 
-{{ $briefs := sort (where .Site.RegularPages "Section" "briefs") "Date" "desc" }}
 {{ if gt (len $briefs) 1 }}
 <div class="archive-section">
   <p class="archive-label">Previous briefs</p>
