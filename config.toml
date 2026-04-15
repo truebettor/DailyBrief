@@ -23,3 +23,7 @@ title = "Daymark"
     name = "About"
     url = "/about/"
     weight = 4
+
+[permalinks]
+  briefs = "/briefs/:filename/"
+
