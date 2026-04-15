@@ -39,7 +39,7 @@ body { background: #fff; font-family: 'DM Sans', sans-serif; color: #111; }
 .gauge-label { font-size: 11px; color: #888; letter-spacing: 0.04em; margin-top: 2px; text-align: center; }
 .gauge-rating { font-size: 11px; font-weight: 500; margin-top: 1px; text-align: center; }
 .rating-high { color: #A32D2D; }
-.rating-med { color: #854F0B; }
+.rating-medium { color: #854F0B; }
 .rating-low { color: #3B6D11; }
 
 /* ── INDICATORS ── */

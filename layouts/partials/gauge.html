@@ -5,7 +5,7 @@
 {{ if eq $level "low" }}
   {{ $needle_cx = 17.0 }}
   {{ $needle_cy = 30.0 }}
-{{ else if eq $level "med" }}
+  {{ else if eq $level "medium" }}
   {{ $needle_cx = 45.0 }}
   {{ $needle_cy = 11.0 }}
 {{ else if eq $level "high" }}
@@ -25,7 +25,7 @@
     <path d="M10 46 A35 35 0 0 1 80 46" fill="none" stroke="#eee" stroke-width="6" stroke-linecap="round"/>
     <path d="M10 46 A35 35 0 0 1 80 46" fill="none" stroke="url(#gauge-grad-{{ .label | urlize }})" stroke-width="6" stroke-linecap="round"/>
     <circle cx="{{ $needle_cx }}" cy="{{ $needle_cy }}" r="5"
-      fill="{{ if eq $level "high" }}#E24B4A{{ else if eq $level "med" }}#EF9F27{{ else }}#3B6D11{{ end }}"
+      fill="{{ if eq $level "high" }}#E24B4A{{ else if eq $level "medium" }}#EF9F27{{ else }}#3B6D11{{ end }}"
       stroke="white" stroke-width="2"/>
   </svg>
   <span class="gauge-label">{{ .label }}</span>
