@@ -53,15 +53,4 @@
 
 {{ end }}
 
-{{ if gt (len $briefs) 1 }}
-<div class="archive-section">
-  <p class="archive-label">Previous briefs</p>
-  <div class="archive-list">
-    {{ range after 1 $briefs }}
-    <a href="{{ .RelPermalink }}">{{ .Date.Format "2 Jan" }}</a>
-    {{ end }}
-  </div>
-</div>
-{{ end }}
-
 {{ end }}
