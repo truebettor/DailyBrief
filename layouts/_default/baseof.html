@@ -12,6 +12,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+  <meta name="content-type" content="opinion-analysis">
 </head>
 <body>
 <div class="site-wrap">
@@ -28,6 +29,12 @@
   <header class="site-header">
     <h1 class="site-title"><a href="/">{{ .Site.Title }}</a></h1>
     <p class="site-tagline">{{ .Site.Params.tagline }}</p>
+
+    <!-- OPINION DISCLAIMER -->
+    <p class="disclaimer">This brief is a geopolitical opinion 
+and analysis. It does not constitute news reporting or factual 
+verification. Verify independently before acting on any information 
+contained herein.</p>
   </header>
 
   {{ block "main" . }}{{ end }}
