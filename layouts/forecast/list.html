@@ -1,72 +1,68 @@
-{{ define "navdate" }}Week of {{ .Date.Format "2 January 2006" | upper }}{{ end }}
+{{ define "navdate" }}WEEK OF {{ .Date.Format "2 JANUARY 2006" | upper }}{{ end }}
 
 {{ define "main" }}
 
 {{ $latest := first 1 (where .Site.RegularPages "Section" "forecast") }}
 {{ range $latest }}
 
-<p class="forecast-date">Weekly forecast — {{ .Date.Format "2 January 2006" }}</p>
-<p class="forecast-sub">Published every Monday · Based on knowledge bank, daily brief history, and independent source analysis</p>
+<div class="brief-content">
 
-{{ if .Params.landscape }}
-<div class="section-block">
-  <p class="section-label">Current landscape</p>
-  <p class="section-body">{{ .Params.landscape }}</p>
-</div>
-{{ end }}
+  <h2 class="brief-date">Weekly forecast — {{ .Date.Format "2 January 2006" }}</h2>
+  <p class="brief-source-note">Published every Monday · Based on knowledge bank, daily brief history, and independent source analysis</p>
 
-{{ if .Params.scenarios }}
-<div class="section-block">
-  <p class="section-label">Scenario watch list</p>
-  {{ range .Params.scenarios }}
-  <div class="scenario-item">
-    <div class="scenario-header">
-      <p class="scenario-title">{{ .title }}</p>
-      <span class="scenario-status status-{{ .status | lower }}">{{ .status | title }}</span>
-    </div>
-    <p class="scenario-body">{{ .body }}</p>
-    <div class="scenario-meta">
-      <span><strong>Confidence</strong> {{ .confidence }}/10</span>
-      <span><strong>NZ impact</strong> {{ .nz_impact }}</span>
-    </div>
+  {{ with .Params.landscape }}
+  <div class="brief-section">
+    <p class="section-label">CURRENT LANDSCAPE</p>
+    <p>{{ . }}</p>
   </div>
   {{ end }}
-</div>
-{{ end }}
 
-{{ if .Params.items }}
-<div class="section-block">
-  <p class="section-label">Forecast items — 30 to 90 days</p>
-  {{ range .Params.items }}
-  <div class="forecast-item">
-    <p class="forecast-item-region">{{ .region }}</p>
-    <h2 class="forecast-item-heading">{{ .heading }}</h2>
-    <p class="forecast-item-body">{{ .body }}</p>
-    <div class="forecast-scores">
-      <span><strong>Probability</strong> {{ .probability }}/10</span>
-      <span><strong>Timeframe</strong> {{ .timeframe }}</span>
-      <span><strong>NZ impact</strong> <span class="nz-tag nz-tag-{{ .impact_level }}">{{ .impact_label }}</span></span>
+  {{ with .Params.scenarios }}
+  <div class="brief-section">
+    <p class="section-label">SCENARIO WATCH LIST</p>
+    {{ range . }}
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <span class="scenario-title">{{ .title }}</span>
+        {{ with .status }}<span class="scenario-status status-{{ . | lower }}">{{ . | title }}</span>{{ end }}
+      </div>
+      {{ with .body }}<p class="scenario-body">{{ . }}</p>{{ end }}
+      <div class="scenario-meta">
+        {{ with .confidence }}<span><strong>Confidence</strong> {{ . }}</span>{{ end }}
+        {{ with .nz_impact }}<span><strong>NZ impact</strong> {{ . }}</span>{{ end }}
+      </div>
     </div>
-    {{ if .prepare }}
-    <div class="prepare-block"><strong>Prepare/Act:</strong> {{ .prepare }} <strong>Urgency {{ .urgency }}/10</strong></div>
     {{ end }}
   </div>
   {{ end }}
-</div>
-{{ end }}
 
-{{ end }}
-
-{{ $forecasts := where .Site.RegularPages "Section" "forecast" }}
-{{ if gt (len $forecasts) 1 }}
-<div class="archive-section">
-  <p class="archive-label">Previous forecasts</p>
-  <div class="archive-list">
-    {{ range after 1 $forecasts }}
-    <a href="{{ .RelPermalink }}">{{ .Date.Format "2 Jan" }}</a>
+  {{ if or .Params.week .Params.month .Params.sixmonth }}
+  <div class="brief-section">
+    <p class="section-label">FORECAST</p>
+    {{ with .Params.week }}
+    <p class="forecast-timeframe-label">NEXT 7 DAYS</p>
+    <p>{{ . }}</p>
+    {{ end }}
+    {{ with .Params.month }}
+    <p class="forecast-timeframe-label">NEXT 30 DAYS</p>
+    <p>{{ . }}</p>
+    {{ end }}
+    {{ with .Params.sixmonth }}
+    <p class="forecast-timeframe-label">NEXT 180 DAYS</p>
+    <p>{{ . }}</p>
     {{ end }}
   </div>
+  {{ end }}
+
+  {{ with .Params.practical_prep }}
+  <div class="brief-section practical-prep">
+    <p class="section-label">PRACTICAL PREPARATION</p>
+    <p>{{ . }}</p>
+  </div>
+  {{ end }}
+
 </div>
+
 {{ end }}
 
 {{ end }}
