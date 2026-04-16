@@ -24,7 +24,12 @@ GIT_EMAIL = os.environ.get("GIT_USER_EMAIL", "hermes@daymark.nz")
 def run(cmd, cwd=None):
     result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
     if result.returncode != 0:
-        print(f"ERROR: {' '.join(cmd)}\n{result.stderr}", file=sys.stderr)
+        # Check for specific "nothing to commit" message from git
+        if "git" in cmd and "commit" in cmd and "nothing to commit" in result.stderr:
+            print(f"INFO: Git commit skipped - nothing to commit for {' '.join(cmd)}", file=sys.stderr)
+            return "" # Return empty string for successful no-op
+        else:
+            print(f"ERROR: {' '.join(cmd)}\n{result.stderr}", file=sys.stderr)
         sys.exit(1)
     return result.stdout.strip()
 
