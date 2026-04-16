@@ -83,6 +83,7 @@ def build_brief(data):
 
 def build_forecast(data):
     date = data["date"]
+    data.pop("items", None)
     lines = ["---", 'title: "Weekly Forecast"', f"date: {date}", "draft: false", "",
              f'landscape: {yaml_str(data.get("landscape", ""))}', ""]
 
@@ -96,19 +97,7 @@ def build_forecast(data):
             lines.append(f'    nz_impact: "{s["nz_impact"]}"')
         lines.append("")
 
-    if data.get("items"):
-        lines.append("items:")
-        for item in data["items"]:
-            lines.append(f'  - region: {yaml_str(item["region"])}')
-            lines.append(f'    heading: {yaml_str(item["heading"])}')
-            lines.append(f'    body: {yaml_str(item["body"])}')
-            lines.append(f'    probability: {item["probability"]}')
-            lines.append(f'    timeframe: "{item["timeframe"]}"')
-            lines.append(f'    impact_level: "{item["impact_level"]}"')
-            lines.append(f'    impact_label: "{item["impact_label"]}"')
-            lines.append(f'    prepare: {yaml_str(item.get("prepare", ""))}')
-            lines.append(f'    urgency: {item.get("urgency", 5)}')
-        lines.append("")
+
 
     if data.get("week"):
         lines.append(f'week: {yaml_str(data["week"])}')
