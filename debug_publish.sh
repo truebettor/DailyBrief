@@ -12,6 +12,12 @@ cd /home/jim-rauch/daymark/scripts/ || {
     exit 1
 }
 
+# Remove old JSON files to force regeneration with the current date
+rm -f /tmp/hermes_brief.json >> /tmp/cron_publisher_debug.log 2>&1
+rm -f /tmp/hermes_forecast.json >> /tmp/cron_publisher_debug.log 2>&1
+echo "$(date) - Removed old /tmp/hermes_brief.json and /tmp/hermes_forecast.json" >> /tmp/cron_publisher_debug.log
+
+
 # Execute the Python script, redirecting its stdout/stderr to the log file
 python3 publish_brief_script.py >> /tmp/cron_publisher_debug.log 2>&1
 

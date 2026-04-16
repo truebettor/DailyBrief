@@ -32,7 +32,7 @@ def default_forecast_content():
         "date": datetime.date.today().strftime("%Y-%m-%d"),
         "landscape": "No forecast available.",
         "scenarios": [],
-        "items": [],
+
         "week": "No forecast available for the next 7 days.",
         "month": "No forecast available for the next 30 days.",
         "sixmonth": "No forecast available for the next 180 days.",
