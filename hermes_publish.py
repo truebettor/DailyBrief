@@ -79,7 +79,7 @@ def build_brief(data):
 def build_forecast(data):
     date = data["date"]
     lines = ["---", 'title: "Weekly Forecast"', f"date: {date}", "draft: false", "",
-             f'landscape: {yaml_str(data.get("landscape", ""))},', ""]
+             f'landscape: {yaml_str(data.get("landscape", ""))}', ""]
 
     if data.get("scenarios"):
         lines.append("scenarios:")
@@ -155,7 +155,7 @@ def main():
 
     run(["git", "config", "user.name", GIT_USER], cwd=repo)
     run(["git", "config", "user.email", GIT_EMAIL], cwd=repo)
-    run(["git", "add", str(out_file)], cwd=repo)
+    run(["git", "add", "-A"], cwd=repo) # Stage all changes
     run(["git", "commit", "-m", f"auto: {args.type} {date_str}"], cwd=repo)
     run(["git", "push"], cwd=repo)
     print(f"Pushed: {args.type} {date_str}")

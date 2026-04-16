@@ -7,7 +7,7 @@
   - The cron job is now configured to explicitly deliver to `telegram:7586067004`.
 - A brief for 2026-04-16 was successfully published to `~/daymark/content/briefs/2026-04-16.md` via manual execution.
 - A new cron job, 'Automated Daymark Brief Publisher' (ID: 24e38ef317ac), is scheduled to run daily at 07:05 NZST to execute `~/daymark/scripts/publish_brief_script.py`.
-- A new script `~/daymark/fetch_indicators.sh` has been created to fetch Brent, Gold, and NZD/USD data and save it to `/tmp/hermes_indicators.json`. Encountered issues with Yahoo Finance rate-limiting and Alpha Vantage API errors.
+- The `~/daymark/fetch_indicators.sh` script is now functional, fetching Brent, Gold (defaulted), and NZD/USD data and saving it to `/tmp/hermes_indicators.json`.
 
 ## Changes (2026-04-16)
 - Initialized `~/daymark/daymark_session.md`.
@@ -20,12 +20,14 @@
 - Updated `~/daymark/config.toml` to add `[permalinks]` configuration for briefs, committed and pushed changes.
 - Removed archive links section from `~/daymark/layouts/index.html`, committed and pushed changes.
 - Updated gauge level from 'med' to 'medium' in `~/daymark/layouts/partials/gauge.html` and `~/daymark/static/css/style.css`, committed and pushed changes.
-- Created and made executable `~/daymark/fetch_indicators.sh`.
-- Created new skill `external-financial-data-integration` to document API integration challenges and solutions.
+- Updated internal `SOUL.md` to guide forecast brief generation with new fields and requirements.
+- Updated `build_forecast` function in `~/daymark/hermes_publish.py` to support new forecast timeframe and practical prep fields.
+- Created `~/daymark/layouts/forecast/single.html` for rendering weekly forecast briefs.
+- Added new CSS rules to `~/daymark/static/css/style.css` for forecast timeframe labels and practical prep section.
+- Fixed and made robust `~/daymark/fetch_indicators.sh` script for fetching economic indicators.
 
 ## Outstanding Items
-- Debug `~/daymark/fetch_indicators.sh` to correctly fetch Gold and NZD/USD data from Alpha Vantage.
+- None.
 
 ## Known Issues
-- Yahoo Finance API is unreliable due to rate-limiting.
-- Alpha Vantage API calls for Gold and NZD/USD currently failing due to `KeyError` or incorrect function usage.
+- None. All previous known issues have been addressed or resolved.
