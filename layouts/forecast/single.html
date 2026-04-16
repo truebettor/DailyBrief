@@ -3,7 +3,7 @@
 {{ define "main" }}
 <div class="brief-content">
 
-  <h2 class="brief-date">Weekly forecast — {{ .Date | time.Format "2 January 2006" | }}</h2>
+  <h2 class="brief-date">Weekly forecast — {{ .Date | time.Format "2 January 2006" }}</h2>
   <p class="brief-source-note">Published every Monday · Based on knowledge bank, daily brief history, and independent source analysis</p>
 
   {{ with .Params.landscape }}
