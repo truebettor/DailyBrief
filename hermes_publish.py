@@ -79,7 +79,7 @@ def build_brief(data):
 def build_forecast(data):
     date = data["date"]
     lines = ["---", 'title: "Weekly Forecast"', f"date: {date}", "draft: false", "",
-             f'landscape: {yaml_str(data.get("landscape", ""))}', ""]
+             f'landscape: {yaml_str(data.get("landscape", ""))},', ""]
 
     if data.get("scenarios"):
         lines.append("scenarios:")
@@ -104,6 +104,16 @@ def build_forecast(data):
             lines.append(f'    prepare: {yaml_str(item.get("prepare", ""))}')
             lines.append(f'    urgency: {item.get("urgency", 5)}')
         lines.append("")
+
+    if data.get("week"):
+        lines.append(f'week: {yaml_str(data["week"])}')
+    if data.get("month"):
+        lines.append(f'month: {yaml_str(data["month"])}')
+    if data.get("sixmonth"):
+        lines.append(f'sixmonth: {yaml_str(data["sixmonth"])}')
+    if data.get("practical_prep"):
+        lines.append(f'practical_prep: {yaml_str(data["practical_prep"])}')
+    lines.append("")
 
     lines.append("---")
     return "\n".join(lines)

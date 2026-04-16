@@ -1,0 +1,61 @@
+{{ define "navdate" }}WEEK OF {{ .Date | time.Format "2 JANUARY 2006" | upper }}{{ end }}
+
+{{ define "main" }}
+<div class="brief-content">
+
+  <h2 class="brief-date">Weekly forecast — {{ .Date | time.Format "2 January 2006" | }}</h2>
+  <p class="brief-source-note">Published every Monday · Based on knowledge bank, daily brief history, and independent source analysis</p>
+
+  {{ with .Params.landscape }}
+  <div class="brief-section">
+    <p class="section-label">CURRENT LANDSCAPE</p>
+    <p>{{ . }}</p>
+  </div>
+  {{ end }}
+
+  {{ with .Params.scenarios }}
+  <div class="brief-section">
+    <p class="section-label">SCENARIO WATCH LIST</p>
+    {{ range . }}
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <span class="scenario-title">{{ .title }}</span>
+        {{ with .status }}<span class="scenario-status status-{{ . }}">{{ . | title }}</span>{{ end }}
+      </div>
+      {{ with .body }}<p class="scenario-body">{{ . }}</p>{{ end }}
+      <div class="scenario-meta">
+        {{ with .confidence }}<span><strong>Confidence</strong> {{ . }}/10</span>{{ end }}
+        {{ with .nz_impact }}<span><strong>NZ impact</strong> {{ . }}</span>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ if or .Params.week .Params.month .Params.sixmonth }}
+  <div class="brief-section">
+    <p class="section-label">FORECAST</p>
+    {{ with .Params.week }}
+    <p class="forecast-timeframe-label">NEXT 7 DAYS</p>
+    <p>{{ . }}</p>
+    {{ end }}
+    {{ with .Params.month }}
+    <p class="forecast-timeframe-label">NEXT 30 DAYS</p>
+    <p>{{ . }}</p>
+    {{ end }}
+    {{ with .Params.sixmonth }}
+    <p class="forecast-timeframe-label">NEXT 180 DAYS</p>
+    <p>{{ . }}</p>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ with .Params.practical_prep }}
+  <div class="brief-section practical-prep">
+    <p class="section-label">PRACTICAL PREPARATION</p>
+    <p>{{ . }}</p>
+  </div>
+  {{ end }}
+
+</div>
+{{ end }}
