@@ -1,3 +1,69 @@
 Thu Apr 16 04:55:47 PM NZST 2026 - debug_publish.sh started.
 Thu Apr 16 04:55:47 PM NZST 2026 - Current PATH: /home/jim-rauch/.local/bin:/home/jim-rauch/.hermes/hermes-agent/venv/bin:/home/jim-rauch/.hermes/hermes-agent/node_modules/.bin:/home/jim-rauch/.hermes/node/bin:/home/jim-rauch/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 Thu Apr 16 04:55:47 PM NZST 2026 - Attempting to execute publish_brief_script.py
+DEBUG: Script started.
+DEBUG: Log file set to /tmp/daymark_publish_automation.log
+DEBUG: Entering main execution block.
+DEBUG: publish_content called for brief with input /tmp/hermes_brief.json
+DEBUG: ensure_dummy_json called for /tmp/hermes_brief.json
+LOG: 2026-04-16 16:55:47 - Warning: /tmp/hermes_brief.json not found or empty. Creating dummy content.
+LOG: 2026-04-16 16:55:47 - Dummy brief content written to /tmp/hermes_brief.json.
+LOG: 2026-04-16 16:55:47 - Attempting to publish brief from /tmp/hermes_brief.json.
+LOG: 2026-04-16 16:55:50 - Publish brief successful: stdout=Written: /home/jim-rauch/daymark/content/briefs/2026-04-16.md
+Pushed: brief 2026-04-16, stderr=
+LOG: 2026-04-16 16:55:50 - Updated hermes_last_publish timestamp.
+DEBUG: publish_content called for forecast with input /tmp/hermes_forecast.json
+DEBUG: ensure_dummy_json called for /tmp/hermes_forecast.json
+DEBUG: /tmp/hermes_forecast.json already exists and is not empty.
+LOG: 2026-04-16 16:55:50 - Attempting to publish forecast from /tmp/hermes_forecast.json.
+LOG: 2026-04-16 16:55:50 - Publish forecast failed: Command '['python3', '/home/jim-rauch/daymark/hermes_publish.py', '--type', 'forecast', '--input', '/tmp/hermes_forecast.json']' returned non-zero exit status 1.. stdout=, stderr=Traceback (most recent call last):
+  File "/home/jim-rauch/daymark/hermes_publish.py", line 170, in <module>
+    main()
+  File "/home/jim-rauch/daymark/hermes_publish.py", line 150, in main
+    content = build_forecast(data)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/jim-rauch/daymark/hermes_publish.py", line 107, in build_forecast
+    lines.append(f'    impact_level: "{item["impact_level"]}"')
+                                       ~~~~^^^^^^^^^^^^^^^^
+KeyError: 'impact_level'
+DEBUG: Script finished.
+Thu Apr 16 04:55:50 PM NZST 2026 - publish_brief_script.py completed successfully.
+Thu Apr 16 04:55:50 PM NZST 2026 - /tmp/ contents after script run:
+total 1004
+drwxrwxrwt 22 root      root        4096 Apr 16 16:55 .
+drwxr-xr-x 23 root      root        4096 Apr  6 08:07 ..
+-rw-rw-r--  1 jim-rauch jim-rauch   1266 Apr 16 16:55 daymark_publish_automation.log
+-rw-rw-r--  1 jim-rauch jim-rauch     52 Apr 14 21:30 daymark_publish.log
+drwxrwxrwt  2 root      root        4096 Apr 14 11:49 .font-unix
+-rw-rw-r--  1 jim-rauch jim-rauch    614 Apr 15 21:12 hermes-audit.json
+-rw-rw-r--  1 jim-rauch jim-rauch    110 Apr 16 16:55 hermes_brief.json
+-rw-rw-r--  1 jim-rauch jim-rauch     37 Apr 16 16:55 hermes-cwd-dcb0dcfdc0db.txt
+-rw-rw-r--  1 jim-rauch jim-rauch   7276 Apr 16 16:54 hermes_forecast.json
+-rw-rw-r--  1 jim-rauch jim-rauch     46 Apr 16 16:53 hermes_indicators.json
+-rw-rw-r--  1 jim-rauch jim-rauch  26752 Apr 15 20:30 hermes_ingest_ready.txt
+-rw-rw-r--  1 jim-rauch jim-rauch      0 Apr 16 16:55 hermes_last_publish
+-rw-rw-r--  1 jim-rauch jim-rauch   5822 Apr 16 16:55 hermes-metrics.json
+-rw-rw-r--  1 jim-rauch jim-rauch   3509 Apr 16 16:55 hermes-snap-dcb0dcfdc0db.sh
+drwxrwxrwt  2 root      root        4096 Apr 14 11:49 .ICE-unix
+-rw-rw-r--  1 jim-rauch jim-rauch 853305 Apr 16 15:24 indicator_raw_json.log
+drwx------  3 jim-rauch jim-rauch   4096 Apr 15 21:06 lu38545tr5.tmp
+drwxrwxr-x  3 jim-rauch jim-rauch   4096 Apr 14 15:57 node-compile-cache
+srwxrwxr-x  1 jim-rauch jim-rauch      0 Apr 14 11:53 OSL_PIPE_1000_SingleOfficeIPC_62916eaed13a9cc21f7f80ecedbbb3f8
+drwx------  6 root      root        4096 Apr 16 14:34 snap-private-tmp
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-bluetooth.service-jzLuWD
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-colord.service-v9RY4K
+drwx------  3 root      root        4096 Apr 14 12:00 systemd-private-6228aeec35044498a5731e93fa42ee8c-fwupd.service-psWacl
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-iio-sensor-proxy.service-z8kten
+drwx------  3 root      root        4096 Apr 15 06:04 systemd-private-6228aeec35044498a5731e93fa42ee8c-ModemManager.service-sJ11MC
+drwx------  3 root      root        4096 Apr 15 06:04 systemd-private-6228aeec35044498a5731e93fa42ee8c-polkit.service-NJgdVu
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-power-profiles-daemon.service-zoI5jT
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-switcheroo-control.service-vg43lo
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-systemd-logind.service-dMb1yb
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-systemd-oomd.service-gpDSUR
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-systemd-resolved.service-xNynIV
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-systemd-timesyncd.service-O2F4Im
+drwx------  3 root      root        4096 Apr 14 11:49 systemd-private-6228aeec35044498a5731e93fa42ee8c-upower.service-DqFRgD
+-r--r--r--  1 jim-rauch jim-rauch     11 Apr 14 11:49 .X0-lock
+drwxrwxrwt  2 root      root        4096 Apr 14 11:49 .X11-unix
+-r--r--r--  1 jim-rauch jim-rauch     11 Apr 14 11:49 .X1-lock
+drwxrwxrwt  2 root      root        4096 Apr 14 11:49 .XIM-unix
