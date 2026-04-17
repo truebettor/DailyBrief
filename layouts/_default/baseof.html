@@ -18,11 +18,35 @@
 <div class="site-wrap">
 
   <nav class="site-nav">
-  <form class="nav-subscribe" action="https://buttondown.com/api/emails/embed-subscribe/jimnz" method="post">
-    <input type="email" name="email" placeholder="your@email.com" required />
-    <input type="hidden" name="_next" value="https://daymark.nz" />
-    <button type="submit">Subscribe</button>
-  </form>
+  <div class="nav-subscribe">
+  <input type="email" id="nav-email" placeholder="your@email.com" />
+  <button onclick="daymarkSubscribe()">Subscribe</button>
+  <span id="nav-sub-msg" style="font-size:0.8rem;margin-left:0.5rem;"></span>
+</div>
+<script>
+function daymarkSubscribe() {
+  const email = document.getElementById('nav-email').value;
+  const msg = document.getElementById('nav-sub-msg');
+  if (!email) return;
+  fetch('https://api.buttondown.email/v1/subscribers', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Token 54a8bb38-4f59-447b-af55-dea163d5fd59',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email_address: email })
+  })
+  .then(r => {
+    if (r.ok) {
+      msg.textContent = '✓ Check your email to confirm.';
+      document.getElementById('nav-email').value = '';
+    } else {
+      msg.textContent = 'Something went wrong.';
+    }
+  })
+  .catch(() => { msg.textContent = 'Something went wrong.'; });
+}
+</script>
   <span class="nav-date">{{ block "navdate" . }}{{ end }}</span>
   <ul class="nav-links">
     {{ range .Site.Menus.main }}
