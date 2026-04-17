@@ -18,13 +18,17 @@
 <div class="site-wrap">
 
   <nav class="site-nav">
-    <span class="nav-date">{{ block "navdate" . }}{{ end }}</span>
-    <ul class="nav-links">
-      {{ range .Site.Menus.main }}
-      <li><a href="{{ .URL }}"{{ if eq $.RelPermalink .URL }} class="active"{{ end }}>{{ .Name }}</a></li>
-      {{ end }}
-    </ul>
-  </nav>
+  <form class="nav-subscribe" action="https://buttondown.com/api/emails/embed-subscribe/jimnz" method="post">
+    <input type="email" name="email" placeholder="your@email.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+  <span class="nav-date">{{ block "navdate" . }}{{ end }}</span>
+  <ul class="nav-links">
+    {{ range .Site.Menus.main }}
+    <li><a href="{{ .URL }}"{{ if eq $.RelPermalink .URL }} class="active"{{ end }}>{{ .Name }}</a></li>
+    {{ end }}
+  </ul>
+</nav>
 
   <header class="site-header">
     <h1 class="site-title"><a href="/">{{ .Site.Title }}</a></h1>
