@@ -1,28 +1,28 @@
 #!/bin/bash
 
-# Ensure ALPHA_VANTAGE_API_KEY environment variable is set
 if [ -z "$ALPHA_VANTAGE_API_KEY" ]; then
-  echo "Error: ALPHA_VANTAGE_API_KEY environment variable is not set. Please set it to proceed." >&2
-  echo "{\"brent\": 0.0, \"gold\": 0.0, \"nzdusd\": 0.0}" > /tmp/hermes_indicators.json
+  echo "Error: ALPHA_VANTAGE_API_KEY not set." >&2
+  echo '{"brent": "N/A", "nzdusd": "N/A", "nzdcny": "N/A"}' > /tmp/hermes_indicators.json
   exit 1
 fi
 
-API_KEY="$ALPHA_VANTAGE_API_KEY"
+API_KEY="${ALPHA_VANTAGE_API_KEY}"
 
-# --- Fetch Brent Crude ---
+# --- Brent Crude ---
 BRENT_JSON=$(curl -s "https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=$API_KEY")
-BRENT=$(echo "$BRENT_JSON" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['data'][0]['value'])" 2>/dev/null || echo "0.0")
-sleep 1 # Respect API rate limits
+BRENT=$(echo "$BRENT_JSON" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['data'][0]['value'])" 2>/dev/null || echo "N/A")
+sleep 1
 
-# --- Fetch Gold (XAUUSD) ---
-# Alpha Vantage free tier limitations make real-time gold difficult to fetch reliably.
-# Defaulting to 0.0 for now. A different API or premium access would be needed.
-GOLD="0.0"
-sleep 1 # Respect API rate limits
-
-# --- Fetch NZD/USD Exchange Rate ---
+# --- NZD/USD ---
 NZDUSD_JSON=$(curl -s "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=NZD&to_currency=USD&apikey=$API_KEY")
-NZDUSD=$(echo "$NZDUSD_JSON" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['Realtime Currency Exchange Rate']['5. Exchange Rate'])" 2>/dev/null || echo "0.0")
+NZDUSD=$(echo "$NZDUSD_JSON" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['Realtime Currency Exchange Rate']['5. Exchange Rate'])" 2>/dev/null || echo "N/A")
+sleep 1
 
-# --- Output to JSON file ---
-echo "{\"brent\": $BRENT, \"gold\": $GOLD, \"nzdusd\": $NZDUSD}" > /tmp/hermes_indicators.json
+# --- NZD/CNY ---
+NZDCNY_JSON=$(curl -s "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=NZD&to_currency=CNY&apikey=$API_KEY")
+NZDCNY=$(echo "$NZDCNY_JSON" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['Realtime Currency Exchange Rate']['5. Exchange Rate'])" 2>/dev/null || echo "N/A")
+
+# --- Write output ---
+echo '{"brent": "'$BRENT'", "nzdusd": "'$NZDUSD'", "nzdcny": "'$NZDCNY'"}' > /tmp/hermes_indicators.json
+
+echo "Indicators fetched: Brent=$BRENT NZD/USD=$NZDUSD NZD/CNY=$NZDCNY"
