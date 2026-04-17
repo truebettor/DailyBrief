@@ -184,34 +184,7 @@ body { background: #fff; font-family: 'DM Sans', sans-serif; color: #111; }
   border-radius: 4px;
 }
 
-/* --- Newsletter Subscribe Strip --- */
-.subscribe-strip {
-  margin-bottom: 1.5rem;
-}
-.subscribe-strip form {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.subscribe-strip label {
-  font-size: 0.85rem;
-  color: #555;
-  white-space: nowrap;
-}
-.subscribe-strip input[type="email"] {
-  font-size: 0.85rem;
-  padding: 0.3rem 0.6rem;
-  border: 1px solid #ccc;
-  width: 200px;
-}
-.subscribe-strip button {
-  font-size: 0.85rem;
-  padding: 0.3rem 0.8rem;
-  background: #111;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
+
 
 /* --- Nav Subscribe Form --- */
 .nav-subscribe {
