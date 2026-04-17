@@ -5,13 +5,7 @@
 {{ $briefs := where .Site.RegularPages "Section" "briefs" }}
 {{ $latest := index $briefs 0 }}
 {{ with $latest }}
-<div class="subscribe-strip">
-  <form action="https://buttondown.com/api/emails/embed-subscribe/jimnz" method="post">
-    <label for="bd-email">Subscribe to daily briefs:</label>
-    <input type="email" name="email" id="bd-email" placeholder="you@example.com" required />
-    <button type="submit">Subscribe</button>
-  </form>
-</div>
+
 
 {{ if .Params.dashboard }}
 <div class="dashboard-wrap">
@@ -61,3 +55,4 @@
 {{ end }}
 
 {{ end }}
+
