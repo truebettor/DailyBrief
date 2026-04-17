@@ -25,3 +25,15 @@
   border: none;
   cursor: pointer;
 }
+
+.gauge-rating.rating-low {
+  color: #3B6D11;
+}
+
+.gauge-rating.rating-medium {
+  color: #EF9F27;
+}
+
+.gauge-rating.rating-high {
+  color: #E24B4A;
+}
