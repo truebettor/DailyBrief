@@ -37,7 +37,7 @@ def run(cmd, cwd=None):
 def yaml_str(value):
     if value is None:
         return '""'
-    escaped = str(value).replace('"', '\\"')
+    escaped = str(value).replace('"', '\"')
     return f'"{escaped}"'
 
 

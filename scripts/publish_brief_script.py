@@ -31,7 +31,7 @@ def default_forecast_content():
     return {
         "date": datetime.date.today().strftime("%Y-%m-%d"),
         "landscape": "No forecast available.",
-        "scenarios": [],
+        "scenarios": [{"title": "Example Scenario", "status": "WATCHING", "body": "This is an example scenario description.", "confidence": 7, "nz_impact": "Low", "impact_level": "Low"}],
 
         "week": "No forecast available for the next 7 days.",
         "month": "No forecast available for the next 30 days.",
