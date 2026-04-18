@@ -8,14 +8,15 @@
 
   {{ with .Params.landscape }}
   <div class="brief-section">
-    <p class="section-label">CURRENT LANDSCAPE</p>
+    <p style="margin-bottom: 1rem;"></p>
+    <p class="section-label">Current Landscape</p>
     <p>{{ . }}</p>
   </div>
   {{ end }}
 
   {{ with .Params.scenarios }}
   <div class="brief-section">
-    <p class="section-label">SCENARIO WATCH LIST</p>
+    <p class="section-label">Scenario Watch List</p>
     {{ range . }}
     <div class="scenario-card">
       <div class="scenario-header">
@@ -34,7 +35,7 @@
 
   {{ if or .Params.week .Params.month .Params.sixmonth }}
   <div class="brief-section">
-    <p class="section-label">FORECAST</p>
+    <p class="section-label">Forecast</p>
     {{ with .Params.week }}
     <p class="forecast-timeframe-label">NEXT 7 DAYS</p>
     <p>{{ . }}</p>
