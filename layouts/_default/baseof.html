@@ -41,7 +41,7 @@ function daymarkSubscribe() {
       msg.textContent = '✓ Check your email to confirm.';
       document.getElementById('nav-email').value = '';
     } else {
-      msg.textContent = 'Something went wrong.';
+      r.json().then(d => { msg.textContent = JSON.stringify(d); });
     }
   })
   .catch(() => { msg.textContent = 'Something went wrong.'; });
