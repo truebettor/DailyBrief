@@ -151,7 +151,7 @@ def main():
     run(["git", "config", "user.email", GIT_EMAIL], cwd=repo)
     run(["git", "add", "-A"], cwd=repo) # Stage all changes
     run(["git", "commit", "-m", f"auto: {args.type} {date_str}"], cwd=repo)
-    run(["git", "push"], cwd=repo)
+    run(["git", "push", "origin", "HEAD:main"], cwd=repo)
     print(f"Pushed: {args.type} {date_str}")
 
 
