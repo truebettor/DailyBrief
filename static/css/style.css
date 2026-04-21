@@ -208,25 +208,28 @@ body { background: #fff; font-family: 'DM Sans', sans-serif; color: #111; }
 }
 
 .nz-tag-low {
-    background-color: #2d6a4f;
-    color: #ffffff;
-    padding: 2px 8px;
+    background-color: #d8f3e8;
+    color: #2d6a4f;
+    border: 1px solid #2d6a4f;
+    padding: 2px 10px;
     border-radius: 12px;
     font-size: 0.8em;
 }
 
 .nz-tag-medium {
-    background-color: #d4820a;
-    color: #ffffff;
-    padding: 2px 8px;
+    background-color: #fef3e2;
+    color: #92600a;
+    border: 1px solid #d4820a;
+    padding: 2px 10px;
     border-radius: 12px;
     font-size: 0.8em;
 }
 
 .nz-tag-high {
-    background-color: #c1121f;
-    color: #ffffff;
-    padding: 2px 8px;
+    background-color: #fde8ea;
+    color: #c1121f;
+    border: 1px solid #c1121f;
+    padding: 2px 10px;
     border-radius: 12px;
     font-size: 0.8em;
 }
