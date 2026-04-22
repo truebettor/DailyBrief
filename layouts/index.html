@@ -45,7 +45,21 @@
   {{ if .nz_impact }}
   <div class="nz-impact">
     {{ range .nz_impact }}
-    <span class="nz-tag nz-tag-{{ .level }}">{{ .label }}: {{ .level | title }}</span>
+    <span class="nz-tag nz-tag-{{ .level }}">
+      {{- $displayLabel := .label -}}
+      {{- if eq $displayLabel "fuel" -}}
+        {{- $displayLabel = "Fuel Risk" -}}
+      {{- else if eq $displayLabel "supply chain" -}}
+        {{- $displayLabel = "Supply Chain Risk" -}}
+      {{- else if eq $displayLabel "global stability" -}}
+        {{- $displayLabel = "Global Stability Risk" -}}
+      {{- else if eq $displayLabel "inflation" -}}
+        {{- $displayLabel = "Inflation Risk" -}}
+      {{- else if eq $displayLabel "currency" -}}
+        {{- $displayLabel = "Currency Risk" -}}
+      {{- end -}}
+      {{ $displayLabel }}: {{ .level | title }}
+    </span>
     {{ end }}
   </div>
   {{ end }}
