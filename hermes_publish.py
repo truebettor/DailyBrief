@@ -37,8 +37,9 @@ def run(cmd, cwd=None):
 def yaml_str(value):
     if value is None:
         return '""'
-    escaped = str(value).replace('"', '\"')
-    return f'"{escaped}"'
+    # Sanitize: replace internal double quotes with single quotes to avoid YAML escaping issues
+    sanitized = str(value).replace('"', "'")
+    return f'"{sanitized}"'
 
 
 def build_brief(data):
