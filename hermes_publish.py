@@ -50,6 +50,10 @@ def build_brief(data):
         lines.append(f'alert: {yaml_str(data["alert"])}')
         lines.append("")
 
+    if data.get("independent_signals"):
+        lines.append(f'independent_signals: {yaml_str(data["independent_signals"])}')
+        lines.append("")
+
     if data.get("dashboard"):
         lines.append("dashboard:")
         for g in data["dashboard"]:
