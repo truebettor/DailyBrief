@@ -57,6 +57,8 @@
         {{- $displayLabel = "Inflation Risk" -}}
       {{- else if eq $displayLabel "currency" -}}
         {{- $displayLabel = "Currency Risk" -}}
+      {{- else if eq $displayLabel "export risk" -}}
+        {{- $displayLabel = "Export Risk" -}}
       {{- end -}}
       {{ $displayLabel }}: {{ .level | title }}
     </span>
