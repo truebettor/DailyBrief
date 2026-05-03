@@ -21,7 +21,7 @@
     <div class="scenario-card">
       <div class="scenario-header">
         <span class="scenario-title">{{ .title }}</span>
-        {{ with .status }}<span class="scenario-status status-{{ . }}">{{ . | title }}</span>{{ end }}
+        {{ with .status }}<span class="scenario-status status-{{ . | lower }}">{{ . | title }}</span>{{ end }}
       </div>
       {{ with .body }}<p class="scenario-body">{{ . }}</p>{{ end }}
       <div class="scenario-meta">
