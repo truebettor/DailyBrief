@@ -33,27 +33,31 @@
   </div>
   {{ end }}
 
-  {{ if or .Params.week .Params.month .Params.sixmonth }}
+  {{ with .Params.items }}
   <div class="brief-section">
-    <p class="section-label">Forecast</p>
-    {{ with .Params.week }}
-    <p class="forecast-timeframe-label">NEXT 7 DAYS</p>
-    <p>{{ . }}</p>
-    {{ end }}
-    {{ with .Params.month }}
-    <p class="forecast-timeframe-label">NEXT 30 DAYS</p>
-    <p>{{ . }}</p>
-    {{ end }}
-    {{ with .Params.sixmonth }}
-    <p class="forecast-timeframe-label">NEXT 180 DAYS</p>
-    <p>{{ . }}</p>
+    <p class="section-label">Forecast Items</p>
+    {{ range . }}
+    <div class="forecast-item">
+      <div class="forecast-header">
+        <span class="forecast-region">{{ .region }}</span>
+        <span class="forecast-timeframe">{{ .timeframe }}</span>
+      </div>
+      <p class="forecast-heading">{{ .heading }}</p>
+      <p class="forecast-body">{{ .body }}</p>
+      <div class="forecast-meta">
+        <span><strong>Probability</strong> {{ .probability }}/10</span>
+        <span><strong>Impact</strong> {{ .impact_label }}</span>
+        {{ with .prepare }}<span><strong>Prepare</strong> {{ . }}</span>{{ end }}
+        {{ with .urgency }}<span><strong>Urgency</strong> {{ . }}/10</span>{{ end }}
+      </div>
+    </div>
     {{ end }}
   </div>
   {{ end }}
 
-  {{ with .Params.practical_prep }}
-  <div class="brief-section practical-prep">
-    <p class="section-label">PRACTICAL PREPARATION</p>
+  {{ with .Params.independent_analysis }}
+  <div class="brief-section">
+    <p class="section-label">Independent Analysis</p>
     <p>{{ . }}</p>
   </div>
   {{ end }}
